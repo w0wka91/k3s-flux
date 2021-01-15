@@ -9,3 +9,5 @@ spec:
     repository: https://charts.bitnami.com/bitnami
     name: mongodb
     version: 10.3.4
+  auth:
+    rootPassword: test1234
