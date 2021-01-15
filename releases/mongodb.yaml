@@ -7,5 +7,5 @@ spec:
   releaseName: mongodb
   chart:
     repository: https://charts.bitnami.com/bitnami
-    name: bitnami
-    version: 4.4.3
+    name: mongodb
+    version: 10.3.4
