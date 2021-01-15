@@ -3,13 +3,9 @@ kind: HelmRelease
 metadata:
   name: mongodb
   namespace: demo
-  annotations:
-    fluxcd.io/automated: "false"
 spec:
   releaseName: mongodb
   chart:
     repository: https://charts.bitnami.com/bitnami
     name: bitnami
     version: 4.4.3
-  values:
-    architecture: standalone
