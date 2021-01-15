@@ -1,0 +1,19 @@
+apiVersion: "acid.zalan.do/v1"
+kind: postgresql
+metadata:
+  name: psql-cluster
+  namespace: pgo
+spec:
+  teamId: "psql"
+  volume:
+    size: 10Gi
+  numberOfInstances: 2
+  users:
+    db_owner:
+    - superuser
+    - createdb
+  preparedDatabases:
+    leitfaden:
+      defaultUsers: true
+  postgresql:
+    version: "13"
