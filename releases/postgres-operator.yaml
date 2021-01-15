@@ -9,3 +9,6 @@ spec:
     git: git@github.com:zalando/postgres-operator
     ref: master
     path: charts/postgres-operator
+  valuesFrom:
+  - chartFileRef:
+      path: values-crd.yaml
