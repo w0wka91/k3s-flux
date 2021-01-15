@@ -6,6 +6,6 @@ metadata:
 spec:
   releaseName: postgres-operator
   chart:
-    git: git@github.com:org/zalando/postgres-operator
+    git: git@github.com:zalando/postgres-operator
     ref: master
     path: charts/postgres-operator
