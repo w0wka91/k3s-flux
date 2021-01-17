@@ -2,7 +2,7 @@ apiVersion: "acid.zalan.do/v1"
 kind: postgresql
 metadata:
   name: psql-cluster
-  namespace: pgo
+  namespace: dev
 spec:
   teamId: "psql"
   volume:
@@ -13,7 +13,7 @@ spec:
     - superuser
     - createdb
   preparedDatabases:
-    leitfaden:
+    hasura:
       defaultUsers: true
   postgresql:
     version: "13"
