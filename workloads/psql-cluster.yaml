@@ -1,10 +1,10 @@
 apiVersion: "acid.zalan.do/v1"
 kind: postgresql
 metadata:
-  name: psql-cluster
+  name: dev-psql-cluster
   namespace: dev
 spec:
-  teamId: "psql"
+  teamId: "dev"
   volume:
     size: 10Gi
   numberOfInstances: 2

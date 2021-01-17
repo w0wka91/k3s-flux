@@ -1,10 +1,10 @@
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
-  name: postgres-operator
-  namespace: postgres
+  name: psql-operator
+  namespace: psql
 spec:
-  releaseName: postgres-operator
+  releaseName: psql-operator
   chart:
     git: git@github.com:zalando/postgres-operator
     ref: master
