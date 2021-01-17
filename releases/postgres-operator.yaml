@@ -2,7 +2,7 @@ apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
   name: postgres-operator
-  namespace: pgo
+  namespace: postgres
 spec:
   releaseName: postgres-operator
   chart:
