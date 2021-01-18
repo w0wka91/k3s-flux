@@ -4,7 +4,6 @@ metadata:
   name: {{ include "hasura.fullname" . }}
   labels:
     {{- include "hasura.labels" . | nindent 4 }}
-  namespace: default  
 spec:
   type: {{ .Values.service.type }}
   ports:
