@@ -1,0 +1,17 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: hasura
+  namespace: dev
+spec:
+  releaseName: hasura
+  chart:
+    git: ssh://git@github.com/w0wka91/k3s-flux
+    ref: master
+    path: charts/hasura
+  values:
+    postgresql:
+      url: dev-psql-cluster
+      port: 5432
+      db: hasura
+      secret: hasura-owner-user.dev-psql-cluster.credentials.postgresql.acid.zalan.do
