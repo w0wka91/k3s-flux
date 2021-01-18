@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "hasura.fullname" . }}
+  labels:
+    {{- include "hasura.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "hasura.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "hasura.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+      - image: "{{ .Values.image.repository }}/{{ .Values.image.tag }}:v{{ .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        name: {{ .Chart.Name }}
+        env:
+        - name: POSTGRESQL_USERNAME
+          {{- if .Values.postgresql.secret }}
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.postgresql.secret | quote}}  
+              key: username   
+          {{- else if .Values.postgresql.username }}
+          value: {{ .Values.postgresql.username | quote }}  
+          {{- end }}   
+        - name: POSTGRESQL_PASSWORD
+          {{- if .Values.postgresql.secret }}
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.postgresql.secret | quote}}  
+              key: password     
+          {{- else if .Values.postgresql.password }}
+          value: {{ .Values.postgresql.password | quote }}  
+          {{- end }}  
+        - name: HASURA_GRAPHQL_DATABASE_URL
+          value: postgres://$(POSTGRESQL_USERNAME):$(POSTGRESQL_PASSWORD)@{{ .Values.postgresql.url }}:{{ .Values.postgresql.port }}/{{ .Values.postgresql.db }}
+        ## enable the console served by server
+        - name: HASURA_GRAPHQL_ENABLE_CONSOLE
+          value: {{ .Values.hasura.enableConsole | quote }}  
+        ## enable debugging mode. It is recommended to disable this in production
+        - name: HASURA_GRAPHQL_DEV_MODE
+          value: {{ .Values.hasura.devMode | quote }}           
+        - name: HASURA_GRAPHQL_ADMIN_SECRET
+          value: {{ .Values.hasura.adminSecret | quote }}               
+        ports:
+        - containerPort: 8080

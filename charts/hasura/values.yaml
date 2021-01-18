@@ -1,0 +1,22 @@
+replicaCount: 1
+
+image:
+  repository: hasura
+  pullPolicy: IfNotPresent
+  tag: "graphql-engine"
+
+service:
+  type: ClusterIP
+  port: 8080
+
+postgresql:
+  url: dev-psql-cluster
+  port: 5432
+  db: hasura
+#  username: username
+#  password: password
+#  secret: secret
+hasura:
+  adminSecret: adminSecret
+  devMode: false
+  enableConsole: false
