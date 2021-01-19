@@ -44,8 +44,10 @@ spec:
           value: {{ .Values.hasura.enableConsole | quote }}  
         ## enable debugging mode. It is recommended to disable this in production
         - name: HASURA_GRAPHQL_DEV_MODE
-          value: {{ .Values.hasura.devMode | quote }}           
+          value: {{ .Values.hasura.devMode | quote }}     
+        {{- if .Values.hasura.adminSecret }}        
         - name: HASURA_GRAPHQL_ADMIN_SECRET
-          value: {{ .Values.hasura.adminSecret | quote }}               
+          value: {{ .Values.hasura.adminSecret | quote }}
+        {{- end }}                 
         ports:
         - containerPort: 8080
