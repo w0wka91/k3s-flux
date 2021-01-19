@@ -15,3 +15,6 @@ spec:
       port: 5432
       db: hasura
       secret: hasura-owner-user.dev-psql-cluster.credentials.postgresql.acid.zalan.do
+    hasura:
+      enableConsole: true
+      devMode: true
